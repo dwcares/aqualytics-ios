@@ -1,0 +1,590 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0500BC40A4A0D33A53760B78 /* UsageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330560066A0A6E076593A3C4 /* UsageView.swift */; };
+		12749B658F79306C6DFFFFDB /* TankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3190FCD8BECCBF50537CC218 /* TankView.swift */; };
+		1BD06BC8261B89DCBD1768CF /* DailyUsageRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD56F327AE584511F373F87 /* DailyUsageRecord.swift */; };
+		2DD8F377F40EDC616E8769E3 /* DeviceStatusCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D064D89C5601C5E69F7EC70 /* DeviceStatusCard.swift */; };
+		336838FE9EF8C00FB68BF44E /* AuthModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFD06EF0BBDDB0D01CB97C /* AuthModels.swift */; };
+		3B3499ABD647421A11B12FB5 /* PumpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10303C8AB8D378498BA41FA6 /* PumpEvent.swift */; };
+		6113EF1F24439B9878837C6C /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7F59882FCAEDFF5331BBB3 /* AuthViewModel.swift */; };
+		6F5F87D29B3742C4596D6418 /* StatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE124C6A82DAB343B7C234 /* StatCard.swift */; };
+		7702EBC083745703C8CECE52 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F47CA90B0F12537520D1BF6 /* LoginView.swift */; };
+		7D991179C7DF6EE35C838E64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64FD371CCCE61A86549BE28B /* Assets.xcassets */; };
+		823D0674FC458844E8F78BA9 /* CommandModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B66952A29952F770CCB68C /* CommandModels.swift */; };
+		8321416B16C225DC313BB7E0 /* CulliganApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F86F05BEA4072685E37A92 /* CulliganApp.swift */; };
+		84290C36583EF0E3319B9110 /* DeviceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95056E833CF6B530030F04C4 /* DeviceModels.swift */; };
+		8AC32E9289268994936772EC /* UsageSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143C2984AF77A81D4794012F /* UsageSyncService.swift */; };
+		9DB7A2831143DC84CB9CA7F1 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77E034CB5EA628027AB3549 /* KeychainService.swift */; };
+		A38C699DEC5FAA7B806EDEF5 /* CulliganAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD08DCA22D7E085A719BEC5 /* CulliganAppTests.swift */; };
+		BB230B4DF67B3292BCCCB7BD /* CulliganClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B782CAFDFB5D9BCDD0E39CBE /* CulliganClient.swift */; };
+		BBFAE46143E7B81B76F1DF79 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227FE7760D2E5E120C83B384 /* DashboardView.swift */; };
+		E0F03C6D5067F55C301B80DF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49EF5691CB41AB9AD27C544 /* SettingsView.swift */; };
+		EFE78547C258ECABF3BB6A36 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7767748F366B03610EE90664 /* UserSettings.swift */; };
+		F649592747FB9455CD40E78F /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA37A05CA3801B68E399AA0 /* DashboardViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2081C4545AADBE20491741DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4AFC4AD83D9EA855F4D79A38 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97FD3033922CC1E527EE2F46;
+			remoteInfo = CulliganApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		10303C8AB8D378498BA41FA6 /* PumpEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PumpEvent.swift; sourceTree = "<group>"; };
+		143C2984AF77A81D4794012F /* UsageSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageSyncService.swift; sourceTree = "<group>"; };
+		227FE7760D2E5E120C83B384 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		3190FCD8BECCBF50537CC218 /* TankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankView.swift; sourceTree = "<group>"; };
+		330560066A0A6E076593A3C4 /* UsageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageView.swift; sourceTree = "<group>"; };
+		3C88022933DB7E0DFF7DE62E /* CulliganApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CulliganApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		59BD36E3B7EF2C9A40825099 /* CulliganAppTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CulliganAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BFFD06EF0BBDDB0D01CB97C /* AuthModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModels.swift; sourceTree = "<group>"; };
+		5DEE124C6A82DAB343B7C234 /* StatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCard.swift; sourceTree = "<group>"; };
+		5F47CA90B0F12537520D1BF6 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		64FD371CCCE61A86549BE28B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		68B66952A29952F770CCB68C /* CommandModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandModels.swift; sourceTree = "<group>"; };
+		7767748F366B03610EE90664 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		7BD56F327AE584511F373F87 /* DailyUsageRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyUsageRecord.swift; sourceTree = "<group>"; };
+		7D7F59882FCAEDFF5331BBB3 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		8D064D89C5601C5E69F7EC70 /* DeviceStatusCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStatusCard.swift; sourceTree = "<group>"; };
+		95056E833CF6B530030F04C4 /* DeviceModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModels.swift; sourceTree = "<group>"; };
+		B77E034CB5EA628027AB3549 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		B782CAFDFB5D9BCDD0E39CBE /* CulliganClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CulliganClient.swift; sourceTree = "<group>"; };
+		C49EF5691CB41AB9AD27C544 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		DBA37A05CA3801B68E399AA0 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		E1F86F05BEA4072685E37A92 /* CulliganApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CulliganApp.swift; sourceTree = "<group>"; };
+		FAD08DCA22D7E085A719BEC5 /* CulliganAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CulliganAppTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0929C0182510C27548A40F20 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5DEE124C6A82DAB343B7C234 /* StatCard.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		09EB2BAEF13B4B66D7EE03F9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C49EF5691CB41AB9AD27C544 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		2472B2700468BBA37C0B7071 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				5F47CA90B0F12537520D1BF6 /* LoginView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		340F8B20CDB36520CB7CE1C7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7D7F59882FCAEDFF5331BBB3 /* AuthViewModel.swift */,
+				DBA37A05CA3801B68E399AA0 /* DashboardViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		35F219FB7060DA54A4FD725B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3C88022933DB7E0DFF7DE62E /* CulliganApp.app */,
+				59BD36E3B7EF2C9A40825099 /* CulliganAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		39447164C4527BD5FA3931FF /* Tank */ = {
+			isa = PBXGroup;
+			children = (
+				3190FCD8BECCBF50537CC218 /* TankView.swift */,
+			);
+			path = Tank;
+			sourceTree = "<group>";
+		};
+		3F236001C69275A48B22E160 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				143C2984AF77A81D4794012F /* UsageSyncService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4614B12E860F46F4F5F45C40 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		5493CE4AD181B7D16C512EDB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2472B2700468BBA37C0B7071 /* Auth */,
+				0929C0182510C27548A40F20 /* Components */,
+				BADC4CEC99F2FCD707FD3064 /* Dashboard */,
+				09EB2BAEF13B4B66D7EE03F9 /* Settings */,
+				39447164C4527BD5FA3931FF /* Tank */,
+				C6D237BC295BAAB5B2CB932A /* Usage */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		975534C9ABA5BFCDA2E6BBFC /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				7BD56F327AE584511F373F87 /* DailyUsageRecord.swift */,
+				10303C8AB8D378498BA41FA6 /* PumpEvent.swift */,
+				7767748F366B03610EE90664 /* UserSettings.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		A5DD09F1C743C1D66A0B44BB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5BFFD06EF0BBDDB0D01CB97C /* AuthModels.swift */,
+				68B66952A29952F770CCB68C /* CommandModels.swift */,
+				95056E833CF6B530030F04C4 /* DeviceModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B21E5EFA48AF21147761BC41 /* CulliganApp */ = {
+			isa = PBXGroup;
+			children = (
+				64FD371CCCE61A86549BE28B /* Assets.xcassets */,
+				E1F86F05BEA4072685E37A92 /* CulliganApp.swift */,
+				CB4428AD5101CE7600D7BB5D /* CulliganAPI */,
+				975534C9ABA5BFCDA2E6BBFC /* Data */,
+				3F236001C69275A48B22E160 /* Services */,
+				340F8B20CDB36520CB7CE1C7 /* ViewModels */,
+				5493CE4AD181B7D16C512EDB /* Views */,
+				4614B12E860F46F4F5F45C40 /* Widget */,
+			);
+			path = CulliganApp;
+			sourceTree = "<group>";
+		};
+		BADC4CEC99F2FCD707FD3064 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				227FE7760D2E5E120C83B384 /* DashboardView.swift */,
+				8D064D89C5601C5E69F7EC70 /* DeviceStatusCard.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		C6D237BC295BAAB5B2CB932A /* Usage */ = {
+			isa = PBXGroup;
+			children = (
+				330560066A0A6E076593A3C4 /* UsageView.swift */,
+			);
+			path = Usage;
+			sourceTree = "<group>";
+		};
+		CB4428AD5101CE7600D7BB5D /* CulliganAPI */ = {
+			isa = PBXGroup;
+			children = (
+				B782CAFDFB5D9BCDD0E39CBE /* CulliganClient.swift */,
+				B77E034CB5EA628027AB3549 /* KeychainService.swift */,
+				A5DD09F1C743C1D66A0B44BB /* Models */,
+			);
+			path = CulliganAPI;
+			sourceTree = "<group>";
+		};
+		E54C28059CBA4FB3FE921ABC /* CulliganAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				FAD08DCA22D7E085A719BEC5 /* CulliganAppTests.swift */,
+			);
+			path = CulliganAppTests;
+			sourceTree = "<group>";
+		};
+		EB2A37B57C43A48603E549F5 = {
+			isa = PBXGroup;
+			children = (
+				B21E5EFA48AF21147761BC41 /* CulliganApp */,
+				E54C28059CBA4FB3FE921ABC /* CulliganAppTests */,
+				35F219FB7060DA54A4FD725B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		97FD3033922CC1E527EE2F46 /* CulliganApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03EE28BDB5D5EA3FEC151736 /* Build configuration list for PBXNativeTarget "CulliganApp" */;
+			buildPhases = (
+				CB9771F07573999E0964392D /* Sources */,
+				394BCD5541AD12E9A90FB129 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CulliganApp;
+			packageProductDependencies = (
+			);
+			productName = CulliganApp;
+			productReference = 3C88022933DB7E0DFF7DE62E /* CulliganApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BEDA76100CDD7F5E4611AC70 /* CulliganAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 354C4781B1213057293B5931 /* Build configuration list for PBXNativeTarget "CulliganAppTests" */;
+			buildPhases = (
+				18F26EFA6EC06B71413C939E /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE57BAAC4C6588B5273E717B /* PBXTargetDependency */,
+			);
+			name = CulliganAppTests;
+			packageProductDependencies = (
+			);
+			productName = CulliganAppTests;
+			productReference = 59BD36E3B7EF2C9A40825099 /* CulliganAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4AFC4AD83D9EA855F4D79A38 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = A42469B292FE3499140BB395 /* Build configuration list for PBXProject "CulliganApp" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = EB2A37B57C43A48603E549F5;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 35F219FB7060DA54A4FD725B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				97FD3033922CC1E527EE2F46 /* CulliganApp */,
+				BEDA76100CDD7F5E4611AC70 /* CulliganAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		394BCD5541AD12E9A90FB129 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D991179C7DF6EE35C838E64 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18F26EFA6EC06B71413C939E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A38C699DEC5FAA7B806EDEF5 /* CulliganAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB9771F07573999E0964392D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				336838FE9EF8C00FB68BF44E /* AuthModels.swift in Sources */,
+				6113EF1F24439B9878837C6C /* AuthViewModel.swift in Sources */,
+				823D0674FC458844E8F78BA9 /* CommandModels.swift in Sources */,
+				8321416B16C225DC313BB7E0 /* CulliganApp.swift in Sources */,
+				BB230B4DF67B3292BCCCB7BD /* CulliganClient.swift in Sources */,
+				1BD06BC8261B89DCBD1768CF /* DailyUsageRecord.swift in Sources */,
+				BBFAE46143E7B81B76F1DF79 /* DashboardView.swift in Sources */,
+				F649592747FB9455CD40E78F /* DashboardViewModel.swift in Sources */,
+				84290C36583EF0E3319B9110 /* DeviceModels.swift in Sources */,
+				2DD8F377F40EDC616E8769E3 /* DeviceStatusCard.swift in Sources */,
+				9DB7A2831143DC84CB9CA7F1 /* KeychainService.swift in Sources */,
+				7702EBC083745703C8CECE52 /* LoginView.swift in Sources */,
+				3B3499ABD647421A11B12FB5 /* PumpEvent.swift in Sources */,
+				E0F03C6D5067F55C301B80DF /* SettingsView.swift in Sources */,
+				6F5F87D29B3742C4596D6418 /* StatCard.swift in Sources */,
+				12749B658F79306C6DFFFFDB /* TankView.swift in Sources */,
+				8AC32E9289268994936772EC /* UsageSyncService.swift in Sources */,
+				0500BC40A4A0D33A53760B78 /* UsageView.swift in Sources */,
+				EFE78547C258ECABF3BB6A36 /* UserSettings.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FE57BAAC4C6588B5273E717B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97FD3033922CC1E527EE2F46 /* CulliganApp */;
+			targetProxy = 2081C4545AADBE20491741DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1B69D2F22C4D384C452C2FB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Culligan;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dwcares.culligan.app;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4C5DD2000A9657F964EC5A79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		74D4F63AF43DD98990FF5BE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dwcares.culligan.app.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CulliganApp.app/CulliganApp";
+			};
+			name = Debug;
+		};
+		9D9F892EB36BDDECB8A554A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dwcares.culligan.app.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CulliganApp.app/CulliganApp";
+			};
+			name = Release;
+		};
+		D81609472FFF2A8114AE42E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Culligan;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dwcares.culligan.app;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F98CA473C06D988B4DCA56B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		03EE28BDB5D5EA3FEC151736 /* Build configuration list for PBXNativeTarget "CulliganApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D81609472FFF2A8114AE42E3 /* Debug */,
+				1B69D2F22C4D384C452C2FB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		354C4781B1213057293B5931 /* Build configuration list for PBXNativeTarget "CulliganAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74D4F63AF43DD98990FF5BE9 /* Debug */,
+				9D9F892EB36BDDECB8A554A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A42469B292FE3499140BB395 /* Build configuration list for PBXProject "CulliganApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F98CA473C06D988B4DCA56B1 /* Debug */,
+				4C5DD2000A9657F964EC5A79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4AFC4AD83D9EA855F4D79A38 /* Project object */;
+}
