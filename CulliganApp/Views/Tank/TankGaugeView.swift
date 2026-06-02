@@ -9,8 +9,8 @@ struct TankGaugeView: View {
     @State private var animatedFill: Double = 0
 
     private var fillColor: Color {
-        if fillPercentage >= 75 { return .red }
-        if fillPercentage >= 50 { return .orange }
+        if fillPercentage >= 80 { return .red }
+        if fillPercentage >= 70 { return .orange }
         return .cyan
     }
 

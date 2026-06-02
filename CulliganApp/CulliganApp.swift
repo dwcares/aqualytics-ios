@@ -7,19 +7,7 @@ struct CulliganApp: App {
 
     init() {
         do {
-            let schema = Schema([
-                DailyUsageRecord.self,
-                PumpEvent.self,
-                UserSettings.self,
-            ])
-            let config = ModelConfiguration(
-                schema: schema,
-                isStoredInMemoryOnly: false
-            )
-            container = try ModelContainer(
-                for: schema,
-                configurations: [config]
-            )
+            container = try SharedConfig.makeModelContainer()
         } catch {
             fatalError("Failed to create ModelContainer: \(error)")
         }

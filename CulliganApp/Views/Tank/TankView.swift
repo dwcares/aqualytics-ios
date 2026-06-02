@@ -43,7 +43,7 @@ struct TankView: View {
 
                     // Warning banner
                     let fill = viewModel.fillPercentage(usageRecords: deviceRecords, capacity: capacity)
-                    if fill >= 75 {
+                    if fill >= 80 {
                         HStack(spacing: 8) {
                             Image(systemName: "exclamationmark.triangle.fill")
                                 .foregroundStyle(.red)
@@ -163,10 +163,13 @@ struct TankView: View {
                             }
                             showDatePicker = false
                         } label: {
-                            Text("Confirm")
-                                .fontWeight(.semibold)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 14)
+                            HStack {
+                                Image(systemName: "checkmark.circle.fill")
+                                Text("Mark as Pumped")
+                                    .fontWeight(.semibold)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 14)
                         }
                         .buttonStyle(.borderedProminent)
                         .tint(.cyan)
@@ -180,7 +183,7 @@ struct TankView: View {
                         }
                     }
                 }
-                .presentationDetents([.medium])
+                .presentationDetents([.large])
             }
             // Delete confirmation
             .confirmationDialog("Delete Pump Event", isPresented: $showDeleteConfirm) {

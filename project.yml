@@ -11,6 +11,8 @@ settings:
     SWIFT_VERSION: "6.0"
     MARKETING_VERSION: "1.0.0"
     CURRENT_PROJECT_VERSION: 1
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: CZDSP7DQSH
 
 targets:
   CulliganApp:
@@ -18,6 +20,13 @@ targets:
     platform: iOS
     sources:
       - CulliganApp
+    dependencies:
+      - target: CulliganWidgetExtension
+    entitlements:
+      path: CulliganApp/CulliganApp.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.dwcares.culligan
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.dwcares.culligan.app
@@ -29,6 +38,28 @@ targets:
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        SWIFT_STRICT_CONCURRENCY: complete
+
+  CulliganWidgetExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - CulliganWidgetExtension
+      - path: CulliganApp/Data
+        group: Shared
+      - path: CulliganApp/CulliganAPI/Models/AuthModels.swift
+        group: Shared
+    entitlements:
+      path: CulliganWidgetExtension/CulliganWidgetExtension.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.dwcares.culligan
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.dwcares.culligan.app.widget
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_FILE: CulliganWidgetExtension/Info.plist
+        INFOPLIST_KEY_CFBundleDisplayName: Culligan Widgets
         SWIFT_STRICT_CONCURRENCY: complete
 
   CulliganAppTests:

@@ -5,7 +5,17 @@ struct DashboardView: View {
     @Environment(AuthViewModel.self) private var authViewModel
     @Environment(\.modelContext) private var modelContext
     @State private var viewModel = DashboardViewModel()
+    @State private var tankViewModel = TankViewModel()
     @Query(sort: \DailyUsageRecord.date) private var allUsageRecords: [DailyUsageRecord]
+    @Query private var settings: [UserSettings]
+
+    private var tankEnabled: Bool {
+        settings.first?.tankTrackingEnabled ?? false
+    }
+
+    private var tankCapacity: Double {
+        settings.first?.tankCapacity ?? 2000
+    }
 
     private var deviceRecords: [DailyUsageRecord] {
         guard let serial = viewModel.device?.serialNumber else { return [] }
@@ -88,6 +98,59 @@ struct DashboardView: View {
                         UsageCalendarView(records: deviceRecords)
                             .padding()
                             .background(.fill.quaternary, in: RoundedRectangle(cornerRadius: 16))
+
+                        // 2.5 TANK — compact progress bar (if enabled)
+                        if tankEnabled {
+                            let fill = tankViewModel.fillPercentage(usageRecords: deviceRecords, capacity: tankCapacity)
+                            let used = tankViewModel.gallonsSincePump(usageRecords: deviceRecords)
+                            let remaining = tankViewModel.remainingCapacity(usageRecords: deviceRecords, capacity: tankCapacity)
+                            let daysLeft = tankViewModel.estimatedDaysUntilFull(usageRecords: deviceRecords, capacity: tankCapacity)
+
+                            VStack(spacing: 8) {
+                                HStack {
+                                    Image(systemName: "cylinder.fill")
+                                        .font(.caption)
+                                        .foregroundStyle(fill >= 80 ? .red : fill >= 70 ? .orange : .cyan)
+                                    Text("Tank")
+                                        .font(.subheadline.weight(.medium))
+                                    Spacer()
+                                    Text("\(Int(fill))%")
+                                        .font(.subheadline.bold())
+                                        .monospacedDigit()
+                                        .foregroundStyle(fill >= 80 ? .red : fill >= 70 ? .orange : .primary)
+                                }
+
+                                // Progress bar
+                                GeometryReader { geo in
+                                    ZStack(alignment: .leading) {
+                                        RoundedRectangle(cornerRadius: 4)
+                                            .fill(Color(.systemGray5))
+                                        RoundedRectangle(cornerRadius: 4)
+                                            .fill(fill >= 80 ? Color.red.gradient : fill >= 70 ? Color.orange.gradient : Color.cyan.gradient)
+                                            .frame(width: geo.size.width * min(1, fill / 100))
+                                    }
+                                }
+                                .frame(height: 8)
+
+                                HStack {
+                                    Text("\(Int(used)) gal used")
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                    Spacer()
+                                    if let days = daysLeft {
+                                        Text("~\(days)d until full")
+                                            .font(.caption)
+                                            .foregroundStyle(.tertiary)
+                                    } else {
+                                        Text("\(Int(remaining)) gal remaining")
+                                            .font(.caption)
+                                            .foregroundStyle(.tertiary)
+                                    }
+                                }
+                            }
+                            .padding()
+                            .background(.fill.quaternary, in: RoundedRectangle(cornerRadius: 16))
+                        }
 
                         // 3. SECONDARY INFO — device + salt in a compact row
                         HStack(spacing: 12) {
@@ -217,6 +280,9 @@ struct DashboardView: View {
             }
             .task {
                 await viewModel.refresh(client: authViewModel.client, modelContext: modelContext)
+                if let serial = viewModel.device?.serialNumber, tankEnabled {
+                    tankViewModel.loadPumpEvents(serialNumber: serial, modelContext: modelContext)
+                }
             }
         }
     }
