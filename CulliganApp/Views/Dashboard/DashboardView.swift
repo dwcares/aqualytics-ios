@@ -2,6 +2,7 @@ import SwiftUI
 
 struct DashboardView: View {
     @Environment(AuthViewModel.self) private var authViewModel
+    @Environment(\.modelContext) private var modelContext
     @State private var viewModel = DashboardViewModel()
 
     var body: some View {
@@ -60,7 +61,7 @@ struct DashboardView: View {
                                     icon: "arrow.uturn.right.circle.fill",
                                     isActive: device.isBypassed
                                 ) {
-                                    await viewModel.toggleBypass(client: authViewModel.client)
+                await viewModel.toggleBypass(client: authViewModel.client, modelContext: modelContext)
                                 }
 
                                 ActionButton(
@@ -68,7 +69,7 @@ struct DashboardView: View {
                                     icon: "airplane.circle.fill",
                                     isActive: device.isVacationMode
                                 ) {
-                                    await viewModel.toggleVacation(client: authViewModel.client)
+                                    await viewModel.toggleVacation(client: authViewModel.client, modelContext: modelContext)
                                 }
                             }
                         }
@@ -84,10 +85,10 @@ struct DashboardView: View {
             }
             .navigationTitle("Dashboard")
             .refreshable {
-                await viewModel.refresh(client: authViewModel.client)
+                await viewModel.refresh(client: authViewModel.client, modelContext: modelContext)
             }
             .task {
-                await viewModel.refresh(client: authViewModel.client)
+                await viewModel.refresh(client: authViewModel.client, modelContext: modelContext)
             }
         }
     }

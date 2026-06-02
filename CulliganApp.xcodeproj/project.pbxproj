@@ -10,6 +10,7 @@
 		0500BC40A4A0D33A53760B78 /* UsageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330560066A0A6E076593A3C4 /* UsageView.swift */; };
 		12749B658F79306C6DFFFFDB /* TankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3190FCD8BECCBF50537CC218 /* TankView.swift */; };
 		1BD06BC8261B89DCBD1768CF /* DailyUsageRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD56F327AE584511F373F87 /* DailyUsageRecord.swift */; };
+		23E3F002B191D93DD2962390 /* UsageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0942C96FBD91751C615F4D13 /* UsageViewModel.swift */; };
 		2DD8F377F40EDC616E8769E3 /* DeviceStatusCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D064D89C5601C5E69F7EC70 /* DeviceStatusCard.swift */; };
 		336838FE9EF8C00FB68BF44E /* AuthModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFD06EF0BBDDB0D01CB97C /* AuthModels.swift */; };
 		3B3499ABD647421A11B12FB5 /* PumpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10303C8AB8D378498BA41FA6 /* PumpEvent.swift */; };
@@ -21,6 +22,7 @@
 		8321416B16C225DC313BB7E0 /* CulliganApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F86F05BEA4072685E37A92 /* CulliganApp.swift */; };
 		84290C36583EF0E3319B9110 /* DeviceModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95056E833CF6B530030F04C4 /* DeviceModels.swift */; };
 		8AC32E9289268994936772EC /* UsageSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143C2984AF77A81D4794012F /* UsageSyncService.swift */; };
+		8BFCA7C9B506AE3D227681FD /* UsageChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426C9A04BB01BCBEDFACB777 /* UsageChartView.swift */; };
 		9DB7A2831143DC84CB9CA7F1 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77E034CB5EA628027AB3549 /* KeychainService.swift */; };
 		A38C699DEC5FAA7B806EDEF5 /* CulliganAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD08DCA22D7E085A719BEC5 /* CulliganAppTests.swift */; };
 		BB230B4DF67B3292BCCCB7BD /* CulliganClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B782CAFDFB5D9BCDD0E39CBE /* CulliganClient.swift */; };
@@ -41,12 +43,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0942C96FBD91751C615F4D13 /* UsageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageViewModel.swift; sourceTree = "<group>"; };
 		10303C8AB8D378498BA41FA6 /* PumpEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PumpEvent.swift; sourceTree = "<group>"; };
 		143C2984AF77A81D4794012F /* UsageSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageSyncService.swift; sourceTree = "<group>"; };
 		227FE7760D2E5E120C83B384 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		3190FCD8BECCBF50537CC218 /* TankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TankView.swift; sourceTree = "<group>"; };
 		330560066A0A6E076593A3C4 /* UsageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageView.swift; sourceTree = "<group>"; };
 		3C88022933DB7E0DFF7DE62E /* CulliganApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CulliganApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		426C9A04BB01BCBEDFACB777 /* UsageChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageChartView.swift; sourceTree = "<group>"; };
 		59BD36E3B7EF2C9A40825099 /* CulliganAppTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CulliganAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BFFD06EF0BBDDB0D01CB97C /* AuthModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModels.swift; sourceTree = "<group>"; };
 		5DEE124C6A82DAB343B7C234 /* StatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatCard.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 			children = (
 				7D7F59882FCAEDFF5331BBB3 /* AuthViewModel.swift */,
 				DBA37A05CA3801B68E399AA0 /* DashboardViewModel.swift */,
+				0942C96FBD91751C615F4D13 /* UsageViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 		C6D237BC295BAAB5B2CB932A /* Usage */ = {
 			isa = PBXGroup;
 			children = (
+				426C9A04BB01BCBEDFACB777 /* UsageChartView.swift */,
 				330560066A0A6E076593A3C4 /* UsageView.swift */,
 			);
 			path = Usage;
@@ -334,8 +340,10 @@
 				E0F03C6D5067F55C301B80DF /* SettingsView.swift in Sources */,
 				6F5F87D29B3742C4596D6418 /* StatCard.swift in Sources */,
 				12749B658F79306C6DFFFFDB /* TankView.swift in Sources */,
+				8BFCA7C9B506AE3D227681FD /* UsageChartView.swift in Sources */,
 				8AC32E9289268994936772EC /* UsageSyncService.swift in Sources */,
 				0500BC40A4A0D33A53760B78 /* UsageView.swift in Sources */,
+				23E3F002B191D93DD2962390 /* UsageViewModel.swift in Sources */,
 				EFE78547C258ECABF3BB6A36 /* UserSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

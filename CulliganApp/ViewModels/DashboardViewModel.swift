@@ -1,4 +1,5 @@
 import Foundation
+import SwiftData
 import Observation
 
 @Observable
@@ -9,7 +10,7 @@ final class DashboardViewModel {
     var isLoading = false
     var errorMessage: String?
 
-    func refresh(client: CulliganClient) async {
+    func refresh(client: CulliganClient, modelContext: ModelContext) async {
         isLoading = true
         errorMessage = nil
 
@@ -18,10 +19,27 @@ final class DashboardViewModel {
             allDevices = softeners
 
             if let current = device {
-                // Keep current selection if still available
                 device = softeners.first { $0.serialNumber == current.serialNumber } ?? softeners.first
             } else {
                 device = softeners.first
+            }
+
+            // Sync usage data for the active device
+            if let device {
+                let syncService = UsageSyncService(modelContext: modelContext)
+                _ = syncService.sync(device: device)
+
+                // Store selected device serial in settings
+                let descriptor = FetchDescriptor<UserSettings>()
+                let settings = (try? modelContext.fetch(descriptor))?.first
+                if let settings {
+                    settings.selectedDeviceSerial = device.serialNumber
+                } else {
+                    let newSettings = UserSettings()
+                    newSettings.selectedDeviceSerial = device.serialNumber
+                    modelContext.insert(newSettings)
+                }
+                try? modelContext.save()
             }
 
             if softeners.isEmpty {
@@ -38,7 +56,7 @@ final class DashboardViewModel {
         self.device = device
     }
 
-    func toggleBypass(client: CulliganClient) async {
+    func toggleBypass(client: CulliganClient, modelContext: ModelContext) async {
         guard let device else { return }
         do {
             if device.isBypassed {
@@ -46,14 +64,13 @@ final class DashboardViewModel {
             } else {
                 _ = try await client.startBypassMode(serialNumber: device.serialNumber, protocolVersion: device.protocolVersion)
             }
-            // Refresh to get updated state
-            await refresh(client: client)
+            await refresh(client: client, modelContext: modelContext)
         } catch {
             errorMessage = error.localizedDescription
         }
     }
 
-    func toggleVacation(client: CulliganClient) async {
+    func toggleVacation(client: CulliganClient, modelContext: ModelContext) async {
         guard let device else { return }
         do {
             if device.isVacationMode {
@@ -61,7 +78,7 @@ final class DashboardViewModel {
             } else {
                 _ = try await client.startVacationMode(serialNumber: device.serialNumber, protocolVersion: device.protocolVersion)
             }
-            await refresh(client: client)
+            await refresh(client: client, modelContext: modelContext)
         } catch {
             errorMessage = error.localizedDescription
         }
