@@ -63,7 +63,13 @@ struct RootView: View {
 
         // Get the device serial from settings, or use a placeholder
         let settingsDescriptor = FetchDescriptor<UserSettings>()
-        let serial = (try? modelContext.fetch(settingsDescriptor))?.first?.selectedDeviceSerial ?? "MOCK_DEVICE"
+        let existingSettings = try? modelContext.fetch(settingsDescriptor)
+        let serial = existingSettings?.first?.selectedDeviceSerial ?? "MOCK_DEVICE"
+
+        // Enable tank tracking for testing
+        if let settings = existingSettings?.first {
+            settings.tankTrackingEnabled = true
+        }
 
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
