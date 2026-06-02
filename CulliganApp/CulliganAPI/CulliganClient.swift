@@ -15,7 +15,7 @@ enum CulliganError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .authFailed(let message):
-            return "Authentication failed: \(message)"
+            return message
         case .notAuthenticated:
             return "Not authenticated. Please sign in."
         case .tokenExpired:
@@ -293,11 +293,19 @@ actor CulliganClient {
         }
 
         if let httpResponse = response as? HTTPURLResponse, !(200...299).contains(httpResponse.statusCode) {
-            if httpResponse.statusCode == 401 {
-                throw CulliganError.authFailed("Authentication failed")
+            // Try to parse a structured error response
+            let friendlyMessage: String
+            if let errorResponse = try? JSONDecoder().decode(ApiResponse<EmptyData>.self, from: data),
+               let apiMessage = errorResponse.error?.message {
+                friendlyMessage = Self.friendlyError(for: apiMessage)
+            } else {
+                friendlyMessage = "Something went wrong. Please try again."
             }
-            let message = String(data: data, encoding: .utf8) ?? "Unknown error"
-            throw CulliganError.apiError(statusCode: httpResponse.statusCode, message: message)
+
+            if httpResponse.statusCode == 401 || httpResponse.statusCode == 422 {
+                throw CulliganError.authFailed(friendlyMessage)
+            }
+            throw CulliganError.apiError(statusCode: httpResponse.statusCode, message: friendlyMessage)
         }
 
         do {
@@ -306,7 +314,26 @@ actor CulliganClient {
             throw CulliganError.decodingError(error)
         }
     }
+
+    /// Map API error codes to user-friendly messages
+    private static func friendlyError(for apiMessage: String) -> String {
+        switch apiMessage {
+        case "INVALID_PASSWORD":
+            return "Incorrect password. Please try again."
+        case "USER_NOT_FOUND", "INVALID_EMAIL":
+            return "No account found with that email address."
+        case "ACCOUNT_LOCKED":
+            return "Account locked. Please try again later."
+        case "TOO_MANY_REQUESTS":
+            return "Too many attempts. Please wait a moment."
+        default:
+            return apiMessage.replacingOccurrences(of: "_", with: " ").capitalized
+        }
+    }
 }
+
+/// Empty decodable for parsing error-only responses
+private struct EmptyData: Decodable, Sendable {}
 
 // MARK: - Softener Device (value type wrapper)
 

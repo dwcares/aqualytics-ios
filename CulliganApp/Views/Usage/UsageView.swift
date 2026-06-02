@@ -5,6 +5,7 @@ struct UsageView: View {
     @Environment(AuthViewModel.self) private var authViewModel
     @Environment(\.modelContext) private var modelContext
     @State private var viewModel = UsageViewModel()
+    @State private var showExport = false
 
     // Get the selected device serial from settings or first available
     @Query private var settings: [UserSettings]
@@ -121,10 +122,16 @@ struct UsageView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        // Export — Phase 4
+                        showExport = true
                     } label: {
                         Image(systemName: "square.and.arrow.up")
                     }
+                    .disabled(serialNumber == nil)
+                }
+            }
+            .sheet(isPresented: $showExport) {
+                if let serial = serialNumber {
+                    ExportView(serialNumber: serial, deviceName: "Culligan")
                 }
             }
             .refreshable {

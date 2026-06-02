@@ -31,9 +31,9 @@ struct UsageChartView: View {
             }
         }
         .chartXAxis {
-            AxisMarks(values: .stride(by: .day, count: xAxisStride)) { value in
+            AxisMarks(values: .stride(by: .day, count: xAxisStride)) { _ in
                 AxisGridLine()
-                AxisValueLabel(format: .dateTime.month(.abbreviated).day(), centered: true)
+                AxisValueLabel(format: xAxisFormat, centered: true)
             }
         }
         .chartYAxis {
@@ -87,7 +87,18 @@ struct UsageChartView: View {
         if count <= 14 { return 2 }
         if count <= 30 { return 5 }
         if count <= 60 { return 7 }
-        return 14
+        if count <= 90 { return 14 }
+        if count <= 180 { return 30 }
+        if count <= 365 { return 60 }
+        return 90
+    }
+
+    private var xAxisFormat: Date.FormatStyle {
+        let count = dailyUsage.count
+        if count <= 90 {
+            return .dateTime.month(.abbreviated).day()
+        }
+        return .dateTime.month(.abbreviated).year(.twoDigits)
     }
 
     private func barIndex(at location: CGPoint, proxy: ChartProxy, geometry: GeometryProxy) -> Int? {
