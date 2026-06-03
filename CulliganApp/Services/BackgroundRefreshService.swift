@@ -20,7 +20,7 @@ enum BackgroundRefreshService {
     /// Schedule the next background refresh.
     static func scheduleNextRefresh() {
         let request = BGAppRefreshTaskRequest(identifier: taskIdentifier)
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 60 * 60) // 1 hour
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 12 * 60 * 60) // 12 hours
         do {
             try BGTaskScheduler.shared.submit(request)
         } catch {

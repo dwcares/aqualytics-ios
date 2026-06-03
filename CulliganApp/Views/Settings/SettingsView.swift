@@ -5,6 +5,7 @@ struct SettingsView: View {
     @Environment(AuthViewModel.self) private var authViewModel
     @Environment(\.modelContext) private var modelContext
     @Query private var settings: [UserSettings]
+    @State private var showNotificationPrompt = false
 
     private var currentSettings: UserSettings {
         if let existing = settings.first {
@@ -49,7 +50,17 @@ struct SettingsView: View {
 
                 // Notifications section
                 Section("Notifications") {
-                    Toggle("Enable Notifications", isOn: Bindable(currentSettings).notificationsEnabled)
+                    Toggle("Enable Notifications", isOn: Binding(
+                        get: { currentSettings.notificationsEnabled },
+                        set: { newValue in
+                            if newValue {
+                                // Show prompt before enabling
+                                showNotificationPrompt = true
+                            } else {
+                                currentSettings.notificationsEnabled = false
+                            }
+                        }
+                    ))
 
                     if currentSettings.notificationsEnabled {
                         Toggle("Device Offline", isOn: Bindable(currentSettings).notifyDeviceOffline)
@@ -63,16 +74,46 @@ struct SettingsView: View {
                 }
 
                 // About section
-                Section("About") {
+                Section {
                     HStack {
                         Text("Version")
                         Spacer()
                         Text(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0")
                             .foregroundStyle(.secondary)
                     }
+
+                    Link(destination: URL(string: "https://github.com/dwcares/culligan-ios")!) {
+                        HStack {
+                            Text("Source Code")
+                            Spacer()
+                            Image(systemName: "arrow.up.right.square")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .foregroundStyle(.primary)
+                } header: {
+                    Text("About")
+                } footer: {
+                    Text("Culligan Water Usage Analytics is not affiliated with Culligan International. Data is stored locally on your device.")
                 }
             }
             .navigationTitle("Settings")
+            .sheet(isPresented: $showNotificationPrompt) {
+                NotificationPromptView(
+                    onEnable: {
+                        showNotificationPrompt = false
+                        Task {
+                            let granted = await NotificationService.shared.requestPermission()
+                            currentSettings.notificationsEnabled = granted
+                        }
+                    },
+                    onSkip: {
+                        showNotificationPrompt = false
+                        currentSettings.notificationsEnabled = false
+                    }
+                )
+                .presentationDetents([.large])
+            }
         }
     }
 }

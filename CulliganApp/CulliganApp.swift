@@ -12,7 +12,6 @@ struct CulliganApp: App {
             fatalError("Failed to create ModelContainer: \(error)")
         }
 
-        // Register background refresh
         BackgroundRefreshService.register()
     }
 
@@ -20,7 +19,6 @@ struct CulliganApp: App {
         WindowGroup {
             RootView()
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-                    // Check notifications when app becomes active
                     BackgroundRefreshService.scheduleNextRefresh()
                 }
         }
@@ -28,19 +26,50 @@ struct CulliganApp: App {
     }
 }
 
-/// Root view that shows either login or the main tab view
+// MARK: - Root View
+
+/// Controls the app flow: onboarding → login → main content
 struct RootView: View {
     @State private var authViewModel = AuthViewModel()
     @Environment(\.modelContext) private var modelContext
+    @State private var showNotificationPrompt = false
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
 
     var body: some View {
         Group {
-            if authViewModel.isAuthenticated {
+            if !hasCompletedOnboarding {
+                OnboardingView {
+                    hasCompletedOnboarding = true
+                }
+            } else if authViewModel.isAuthenticated {
                 ContentView()
                     .environment(authViewModel)
                     .task {
-                        // Request notification permission on first authenticated launch
-                        _ = await NotificationService.shared.requestPermission()
+                        let notified = UserDefaults.standard.bool(forKey: "hasShownNotificationPrompt")
+                        if !notified {
+                            try? await Task.sleep(for: .seconds(1.5))
+                            showNotificationPrompt = true
+                        }
+                    }
+                    .sheet(isPresented: $showNotificationPrompt) {
+                        NotificationPromptView(
+                            onEnable: {
+                                showNotificationPrompt = false
+                                UserDefaults.standard.set(true, forKey: "hasShownNotificationPrompt")
+                                Task {
+                                    let granted = await NotificationService.shared.requestPermission()
+                                    if !granted {
+                                        updateNotificationSetting(enabled: false)
+                                    }
+                                }
+                            },
+                            onSkip: {
+                                showNotificationPrompt = false
+                                UserDefaults.standard.set(true, forKey: "hasShownNotificationPrompt")
+                                updateNotificationSetting(enabled: false)
+                            }
+                        )
+                        .presentationDetents([.large])
                     }
             } else {
                 LoginView()
@@ -49,71 +78,20 @@ struct RootView: View {
         }
         .task {
             await authViewModel.checkExistingAuth()
-            seedMockDataIfNeeded()
         }
     }
 
-    /// Seed ~2 years of mock usage data for testing. Only runs once.
-    private func seedMockDataIfNeeded() {
-        let settingsDescriptor = FetchDescriptor<UserSettings>()
-        let existingSettings = try? modelContext.fetch(settingsDescriptor)
-
-        // Enable tank tracking for testing
-        if let settings = existingSettings?.first {
-            settings.tankTrackingEnabled = true
+    private func updateNotificationSetting(enabled: Bool) {
+        let descriptor = FetchDescriptor<UserSettings>()
+        if let settings = try? modelContext.fetch(descriptor).first {
+            settings.notificationsEnabled = enabled
+            try? modelContext.save()
         }
-
-        // If we have MOCK_DEVICE records and a real device serial, migrate them
-        let realSerial = existingSettings?.first?.selectedDeviceSerial
-        if let realSerial, !realSerial.isEmpty, realSerial != "MOCK_DEVICE" {
-            let mockDescriptor = FetchDescriptor<DailyUsageRecord>(
-                predicate: #Predicate { $0.serialNumber == "MOCK_DEVICE" }
-            )
-            if let mockRecords = try? modelContext.fetch(mockDescriptor), !mockRecords.isEmpty {
-                for record in mockRecords {
-                    // Create new record with real serial (can't change id)
-                    let newRecord = DailyUsageRecord(serialNumber: realSerial, date: record.date, gallons: record.gallons)
-                    modelContext.insert(newRecord)
-                    modelContext.delete(record)
-                }
-                try? modelContext.save()
-                print("Migrated \(mockRecords.count) mock records to \(realSerial)")
-                return
-            }
-        }
-
-        // Check if we already have significant history
-        let descriptor = FetchDescriptor<DailyUsageRecord>()
-        let count = (try? modelContext.fetchCount(descriptor)) ?? 0
-        guard count < 60 else { return }
-
-        let serial = realSerial ?? "MOCK_DEVICE"
-
-        let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-
-        // Generate 2 years of data with realistic patterns
-        for daysAgo in 0..<730 {
-            guard let date = calendar.date(byAdding: .day, value: -daysAgo, to: today) else { continue }
-
-            let dayOfYear = calendar.ordinality(of: .day, in: .year, for: date) ?? 1
-            let seasonalFactor = 1.0 + 0.3 * sin(Double(dayOfYear) / 365.0 * 2 * .pi)
-            let weekday = calendar.component(.weekday, from: date)
-            let weekendFactor = (weekday == 1 || weekday == 7) ? 1.2 : 1.0
-
-            let base = Double.random(in: 40...80)
-            let gallons = base * seasonalFactor * weekendFactor
-
-            let record = DailyUsageRecord(serialNumber: serial, date: date, gallons: round(gallons))
-            modelContext.insert(record)
-        }
-
-        try? modelContext.save()
-        print("Seeded 730 days of mock usage data for \(serial)")
     }
 }
 
-/// Main tab view shown after authentication
+// MARK: - Main Tab View
+
 struct ContentView: View {
     @Environment(AuthViewModel.self) private var authViewModel
     @Query private var settings: [UserSettings]
