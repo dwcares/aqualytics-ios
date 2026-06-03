@@ -40,6 +40,12 @@ final class DashboardViewModel {
                     modelContext.insert(newSettings)
                 }
                 try? modelContext.save()
+
+                // Check device-level alerts (offline, salt)
+                if let settings {
+                    await NotificationService.shared.checkDeviceAlerts(device: device, settings: settings)
+                    NotificationService.shared.checkAndNotify(modelContext: modelContext)
+                }
             }
 
             if softeners.isEmpty {

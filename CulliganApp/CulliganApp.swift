@@ -11,11 +11,18 @@ struct CulliganApp: App {
         } catch {
             fatalError("Failed to create ModelContainer: \(error)")
         }
+
+        // Register background refresh
+        BackgroundRefreshService.register()
     }
 
     var body: some Scene {
         WindowGroup {
             RootView()
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                    // Check notifications when app becomes active
+                    BackgroundRefreshService.scheduleNextRefresh()
+                }
         }
         .modelContainer(container)
     }
@@ -31,6 +38,10 @@ struct RootView: View {
             if authViewModel.isAuthenticated {
                 ContentView()
                     .environment(authViewModel)
+                    .task {
+                        // Request notification permission on first authenticated launch
+                        _ = await NotificationService.shared.requestPermission()
+                    }
             } else {
                 LoginView()
                     .environment(authViewModel)

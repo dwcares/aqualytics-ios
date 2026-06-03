@@ -31,8 +31,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.dwcares.culligan.app
         GENERATE_INFOPLIST_FILE: YES
-        INFOPLIST_KEY_UILaunchScreen_Generation: YES
-        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_FILE: CulliganApp/Info.plist
         INFOPLIST_KEY_CFBundleDisplayName: Culligan
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
