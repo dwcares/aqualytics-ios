@@ -44,20 +44,39 @@ struct RootView: View {
 
     /// Seed ~2 years of mock usage data for testing. Only runs once.
     private func seedMockDataIfNeeded() {
-        // Check if we already have significant history
-        let descriptor = FetchDescriptor<DailyUsageRecord>()
-        let count = (try? modelContext.fetchCount(descriptor)) ?? 0
-        guard count < 60 else { return } // already have data
-
-        // Get the device serial from settings, or use a placeholder
         let settingsDescriptor = FetchDescriptor<UserSettings>()
         let existingSettings = try? modelContext.fetch(settingsDescriptor)
-        let serial = existingSettings?.first?.selectedDeviceSerial ?? "MOCK_DEVICE"
 
         // Enable tank tracking for testing
         if let settings = existingSettings?.first {
             settings.tankTrackingEnabled = true
         }
+
+        // If we have MOCK_DEVICE records and a real device serial, migrate them
+        let realSerial = existingSettings?.first?.selectedDeviceSerial
+        if let realSerial, !realSerial.isEmpty, realSerial != "MOCK_DEVICE" {
+            let mockDescriptor = FetchDescriptor<DailyUsageRecord>(
+                predicate: #Predicate { $0.serialNumber == "MOCK_DEVICE" }
+            )
+            if let mockRecords = try? modelContext.fetch(mockDescriptor), !mockRecords.isEmpty {
+                for record in mockRecords {
+                    // Create new record with real serial (can't change id)
+                    let newRecord = DailyUsageRecord(serialNumber: realSerial, date: record.date, gallons: record.gallons)
+                    modelContext.insert(newRecord)
+                    modelContext.delete(record)
+                }
+                try? modelContext.save()
+                print("Migrated \(mockRecords.count) mock records to \(realSerial)")
+                return
+            }
+        }
+
+        // Check if we already have significant history
+        let descriptor = FetchDescriptor<DailyUsageRecord>()
+        let count = (try? modelContext.fetchCount(descriptor)) ?? 0
+        guard count < 60 else { return }
+
+        let serial = realSerial ?? "MOCK_DEVICE"
 
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
@@ -66,11 +85,10 @@ struct RootView: View {
         for daysAgo in 0..<730 {
             guard let date = calendar.date(byAdding: .day, value: -daysAgo, to: today) else { continue }
 
-            // Base usage: 40-80 gal/day with seasonal variation
             let dayOfYear = calendar.ordinality(of: .day, in: .year, for: date) ?? 1
-            let seasonalFactor = 1.0 + 0.3 * sin(Double(dayOfYear) / 365.0 * 2 * .pi) // higher in summer
+            let seasonalFactor = 1.0 + 0.3 * sin(Double(dayOfYear) / 365.0 * 2 * .pi)
             let weekday = calendar.component(.weekday, from: date)
-            let weekendFactor = (weekday == 1 || weekday == 7) ? 1.2 : 1.0 // more on weekends
+            let weekendFactor = (weekday == 1 || weekday == 7) ? 1.2 : 1.0
 
             let base = Double.random(in: 40...80)
             let gallons = base * seasonalFactor * weekendFactor
@@ -80,7 +98,7 @@ struct RootView: View {
         }
 
         try? modelContext.save()
-        print("Seeded 730 days of mock usage data")
+        print("Seeded 730 days of mock usage data for \(serial)")
     }
 }
 

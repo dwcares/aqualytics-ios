@@ -148,15 +148,9 @@ struct TankWidgetView: View {
 
                 Spacer()
 
-                if let days = entry.daysUntilFull {
-                    Text("~\(days)d until full")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                } else {
-                    Text("\(Int(entry.gallonsUsed)) gal used")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                }
+                Text("\(Int(entry.gallonsUsed)) of \(Int(entry.capacity)) gal")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
             }
         }
     }
