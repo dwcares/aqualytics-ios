@@ -72,11 +72,6 @@ struct TankView: View {
                             value: viewModel.daysSinceLastPump().map(String.init) ?? "--",
                             unit: ""
                         )
-                        TankStat(
-                            label: "Est. Full",
-                            value: viewModel.estimatedDaysUntilFull(usageRecords: deviceRecords, capacity: capacity).map(String.init) ?? "--",
-                            unit: "days"
-                        )
                     }
 
                     // Mark as pumped button

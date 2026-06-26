@@ -37,13 +37,24 @@ struct LoginView: View {
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                         .focused($focusedField, equals: .email)
+                        .onSubmit { focusedField = .password }
+                        .submitLabel(.next)
                         .padding()
                         .background(.fill.quaternary)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
 
                     SecureField("Password", text: $password)
                         .textContentType(.password)
+                        // Match the email field's keyboard type so focus transitions
+                        // between fields don't dismiss and re-present the keyboard.
+                        .keyboardType(.emailAddress)
                         .focused($focusedField, equals: .password)
+                        .onSubmit {
+                            if !email.isEmpty && !password.isEmpty {
+                                Task { await viewModel.login(email: email, password: password) }
+                            }
+                        }
+                        .submitLabel(.go)
                         .padding()
                         .background(.fill.quaternary)
                         .clipShape(RoundedRectangle(cornerRadius: 12))

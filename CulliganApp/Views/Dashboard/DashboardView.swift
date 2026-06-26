@@ -104,7 +104,6 @@ struct DashboardView: View {
                             let fill = tankViewModel.fillPercentage(usageRecords: deviceRecords, capacity: tankCapacity)
                             let used = tankViewModel.gallonsSincePump(usageRecords: deviceRecords)
                             let remaining = tankViewModel.remainingCapacity(usageRecords: deviceRecords, capacity: tankCapacity)
-                            let daysLeft = tankViewModel.estimatedDaysUntilFull(usageRecords: deviceRecords, capacity: tankCapacity)
 
                             VStack(spacing: 8) {
                                 HStack {
@@ -137,15 +136,9 @@ struct DashboardView: View {
                                         .font(.caption)
                                         .foregroundStyle(.secondary)
                                     Spacer()
-                                    if let days = daysLeft {
-                                        Text("~\(days)d until full")
-                                            .font(.caption)
-                                            .foregroundStyle(.tertiary)
-                                    } else {
-                                        Text("\(Int(remaining)) gal remaining")
-                                            .font(.caption)
-                                            .foregroundStyle(.tertiary)
-                                    }
+                                    Text("\(Int(remaining)) gal remaining")
+                                        .font(.caption)
+                                        .foregroundStyle(.tertiary)
                                 }
                             }
                             .padding()
@@ -186,25 +179,6 @@ struct DashboardView: View {
                             }
                         }
                         .padding(.horizontal, 4)
-
-                        // 4. ACTIONS — bypass & vacation
-                        HStack(spacing: 12) {
-                            ActionButton(
-                                title: device.isBypassed ? "End Bypass" : "Bypass",
-                                icon: "arrow.uturn.right.circle.fill",
-                                isActive: device.isBypassed
-                            ) {
-                                await viewModel.toggleBypass(client: authViewModel.client, modelContext: modelContext)
-                            }
-
-                            ActionButton(
-                                title: device.isVacationMode ? "End Vacation" : "Vacation",
-                                icon: "airplane.circle.fill",
-                                isActive: device.isVacationMode
-                            ) {
-                                await viewModel.toggleVacation(client: authViewModel.client, modelContext: modelContext)
-                            }
-                        }
 
                         // 5. INSIGHTS — weekly summary cards
                         VStack(spacing: 12) {
@@ -285,43 +259,6 @@ struct DashboardView: View {
                 }
             }
         }
-    }
-}
-
-// MARK: - Action Button
-
-struct ActionButton: View {
-    let title: String
-    let icon: String
-    let isActive: Bool
-    let action: () async -> Void
-
-    @State private var isPerforming = false
-
-    var body: some View {
-        Button {
-            Task {
-                isPerforming = true
-                await action()
-                isPerforming = false
-            }
-        } label: {
-            HStack {
-                if isPerforming {
-                    ProgressView()
-                        .controlSize(.small)
-                } else {
-                    Image(systemName: icon)
-                }
-                Text(title)
-                    .fontWeight(.medium)
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 14)
-        }
-        .buttonStyle(.bordered)
-        .tint(isActive ? .orange : .cyan)
-        .disabled(isPerforming)
     }
 }
 

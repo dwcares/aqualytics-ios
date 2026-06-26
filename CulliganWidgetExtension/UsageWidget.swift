@@ -158,12 +158,12 @@ struct UsageWidgetMediumView: View {
         var lastMonth = -1
 
         for (colIndex, week) in weeks.enumerated() {
-            if let firstDay = week.first(where: { $0.isInRange }) {
-                let month = calendar.component(.month, from: firstDay.date)
-                if month != lastMonth {
-                    labels.append((formatter.string(from: firstDay.date), colIndex))
-                    lastMonth = month
-                }
+            // Use the first day of the week (Sunday) to determine column's month
+            let firstDay = week[0]
+            let month = calendar.component(.month, from: firstDay.date)
+            if month != lastMonth {
+                labels.append((formatter.string(from: firstDay.date), colIndex))
+                lastMonth = month
             }
         }
         return labels
@@ -194,23 +194,24 @@ struct UsageWidgetMediumView: View {
                 }
             }
 
-            // Month labels
-            HStack(spacing: 0) {
-                ForEach(Array(monthLabels.enumerated()), id: \.offset) { i, label in
-                    let (name, col) = label
-                    let nextCol = i + 1 < monthLabels.count ? monthLabels[i + 1].1 : weeks.count
-                    let width = CGFloat(nextCol - col) * (cellSize + cellSpacing)
-                    if width >= 18 {
-                        Text(name)
+            // Month labels — positioned to align with grid columns
+            GeometryReader { geo in
+                let totalSpacing = cellSpacing * CGFloat(weeks.count - 1)
+                let colWidth = (geo.size.width - totalSpacing) / CGFloat(weeks.count)
+                let step = colWidth + cellSpacing
+
+                ZStack(alignment: .leading) {
+                    ForEach(Array(monthLabels.enumerated()), id: \.offset) { _, label in
+                        Text(label.0)
                             .font(.system(size: 7))
                             .foregroundStyle(.secondary)
-                            .frame(width: width, alignment: .leading)
-                            .lineLimit(1)
-                    } else {
-                        Color.clear.frame(width: width, height: 1)
+                            .fixedSize()
+                            .offset(x: CGFloat(label.1) * step)
                     }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             }
+            .frame(height: 10)
 
             // Calendar grid — fills remaining space
             HStack(spacing: cellSpacing) {
@@ -234,9 +235,9 @@ struct UsageWidgetMediumView: View {
     }
 
     private func colorForUsage(_ gallons: Double) -> Color {
-        guard entry.maxUsage > 0 else { return Color(.systemGray5) }
+        guard entry.maxUsage > 0 else { return Color.primary.opacity(0.06) }
         let level = min(1.0, gallons / entry.maxUsage)
-        if level == 0 { return Color(.systemGray5) }
+        if level == 0 { return Color.primary.opacity(0.06) }
         return Color.cyan.opacity(0.15 + level * 0.75)
     }
 }

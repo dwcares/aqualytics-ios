@@ -6,6 +6,7 @@ struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var settings: [UserSettings]
     @State private var showNotificationPrompt = false
+    @FocusState private var isTankCapacityFocused: Bool
 
     private var currentSettings: UserSettings {
         if let existing = settings.first {
@@ -39,6 +40,7 @@ struct SettingsView: View {
                             TextField("Gallons", value: Bindable(currentSettings).tankCapacity, format: .number)
                                 .multilineTextAlignment(.trailing)
                                 .keyboardType(.numberPad)
+                                .focused($isTankCapacityFocused)
                                 .frame(width: 100)
                         }
                     }
@@ -98,6 +100,21 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
+            .scrollDismissesKeyboard(.immediately)
+            .safeAreaInset(edge: .bottom) {
+                if isTankCapacityFocused {
+                    HStack {
+                        Spacer()
+                        Button("Done") {
+                            isTankCapacityFocused = false
+                        }
+                        .fontWeight(.semibold)
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .background(.bar)
+                }
+            }
             .sheet(isPresented: $showNotificationPrompt) {
                 NotificationPromptView(
                     onEnable: {

@@ -61,32 +61,4 @@ final class DashboardViewModel {
     func selectDevice(_ device: SoftenerDevice) {
         self.device = device
     }
-
-    func toggleBypass(client: CulliganClient, modelContext: ModelContext) async {
-        guard let device else { return }
-        do {
-            if device.isBypassed {
-                _ = try await client.stopBypassMode(serialNumber: device.serialNumber, protocolVersion: device.protocolVersion)
-            } else {
-                _ = try await client.startBypassMode(serialNumber: device.serialNumber, protocolVersion: device.protocolVersion)
-            }
-            await refresh(client: client, modelContext: modelContext)
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    func toggleVacation(client: CulliganClient, modelContext: ModelContext) async {
-        guard let device else { return }
-        do {
-            if device.isVacationMode {
-                _ = try await client.stopVacationMode(serialNumber: device.serialNumber, protocolVersion: device.protocolVersion)
-            } else {
-                _ = try await client.startVacationMode(serialNumber: device.serialNumber, protocolVersion: device.protocolVersion)
-            }
-            await refresh(client: client, modelContext: modelContext)
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
 }

@@ -10,7 +10,7 @@ settings:
   base:
     SWIFT_VERSION: "6.0"
     MARKETING_VERSION: "1.0.0"
-    CURRENT_PROJECT_VERSION: 1
+    CURRENT_PROJECT_VERSION: 5
     CODE_SIGN_STYLE: Automatic
     DEVELOPMENT_TEAM: CZDSP7DQSH
 
@@ -34,7 +34,7 @@ targets:
         INFOPLIST_FILE: CulliganApp/Info.plist
         INFOPLIST_KEY_CFBundleDisplayName: Culligan
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
-        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         SWIFT_STRICT_CONCURRENCY: complete
@@ -71,4 +71,16 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.dwcares.culligan.app.tests
+        GENERATE_INFOPLIST_FILE: YES
+
+  CulliganAppUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - CulliganAppUITests
+    dependencies:
+      - target: CulliganApp
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.dwcares.culligan.app.uitests
         GENERATE_INFOPLIST_FILE: YES

@@ -1,0 +1,32 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Capture App Store screenshots"
+  lane :screenshots do
+    capture_ios_screenshots(
+      project: "CulliganApp.xcodeproj",
+      scheme: "CulliganAppUITests",
+      devices: ["iPhone 17 Pro Max"],
+      languages: ["en-US"],
+      output_directory: "./screenshots",
+      clear_previous_screenshots: true,
+      override_status_bar: true,
+      dark_mode: false,
+      xcargs: "CULLIGAN_EMAIL='#{ENV['CULLIGAN_EMAIL']}' CULLIGAN_PASSWORD='#{ENV['CULLIGAN_PASSWORD']}'"
+    )
+  end
+
+  desc "Frame screenshots with device bezels"
+  lane :frame do
+    frame_screenshots(
+      path: "./screenshots",
+      force_device_type: "iPhone 17 Pro Max"
+    )
+  end
+
+  desc "Screenshots + frame in one go"
+  lane :screens do
+    screenshots
+    frame
+  end
+end
