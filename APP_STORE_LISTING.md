@@ -1,31 +1,31 @@
 # App Store Listing
 
 ## App Name
-Culligan Water Analytics
+Aqualytics
 
 ## Subtitle
-Track usage, monitor your tank
+Track water usage & tank levels
 
 ## Category
 Utilities
 
 ## Price
-Free
+$2.99 (Tier 3) — enroll in the App Store Small Business Program for the 15% rate
 
 ---
 
 ## Description
 
-Track your Culligan water softener usage like never before. Culligan Water Analytics gives you long-term insights into your household water consumption — with unlimited history, smart alerts, and optional holding tank tracking.
+Aqualytics gives you long-term insights into your household water consumption — with unlimited history, smart alerts, and optional holding tank tracking.
 
 **Your data, unlocked.**
-The official Culligan app only shows 30 days of usage. We store your data locally on your device, building a history that goes back months and years. See patterns, spot trends, and understand your water usage at a glance.
+Many water softener apps only show the last 30 days of usage. Aqualytics stores your data locally on your device, building a history that goes back months and years. See patterns, spot trends, and understand your water usage at a glance.
 
 **Dashboard at a glance**
 • Today's usage front and center
 • GitHub-style calendar heatmap showing months of daily usage
 • Weekly insights with trend comparisons
-• Device status, salt level, and quick controls
+• Device status and salt level
 
 **Detailed usage history**
 • Interactive charts with 7-day, 30-day, 90-day, and all-time views
@@ -36,7 +36,6 @@ The official Culligan app only shows 30 days of usage. We store your data locall
 • Monitor your septic or holding tank fill level
 • Animated gauge with color-coded warnings
 • Record pump events and track history
-• Estimated days until full based on your usage patterns
 
 **Home screen widgets**
 • Small widget: today's gallons at a glance
@@ -54,19 +53,19 @@ The official Culligan app only shows 30 days of usage. We store your data locall
 • Share via AirDrop, email, Files, or any app
 
 **Privacy first**
-All data is stored locally on your device. No accounts, no cloud storage, no tracking. Your water data stays yours.
+All data is stored locally on your device. No accounts on our end, no cloud storage, no tracking. Your water data stays yours.
 
-Requires a Culligan Smart HE water softener with WiFi connectivity and a Culligan Connect account.
+Aqualytics is an independent app and is not affiliated with or endorsed by Culligan International. It requires a compatible Culligan Smart HE water softener with WiFi connectivity and a Culligan Connect account.
 
 ---
 
 ## Keywords
-culligan, water softener, water usage, water tracker, holding tank, septic tank, water monitor, home water, smart home, usage analytics
+water softener, water usage, water tracker, holding tank, septic tank, water monitor, home water, smart home, usage analytics, salt level
 
 ---
 
 ## What's New in Version 1.0
-• Track your Culligan water softener usage with unlimited local history
+• Track your water softener usage with unlimited local history
 • GitHub-style calendar heatmap for at-a-glance usage patterns
 • Optional holding tank / septic tank tracking with pump history
 • Home screen widgets (usage + tank level)
@@ -77,10 +76,20 @@ culligan, water softener, water usage, water tracker, holding tank, septic tank,
 ---
 
 ## Privacy Policy URL
-https://github.com/dwcares/culligan-ios/blob/main/PRIVACY.md
+https://dwcares.github.io/aqualytics-ios/privacy/
 
 ## Support URL
-https://github.com/dwcares/culligan-ios/issues
+https://dwcares.github.io/aqualytics-ios/support/
+
+---
+
+## App Review Notes (IMPORTANT)
+The app is login-gated and requires a Culligan Connect account to access any
+functionality. Provide a working demo account in App Review Information:
+- Username: <demo email>
+- Password: <demo password>
+Without valid credentials the reviewer cannot get past the login screen
+(rejection under Guideline 2.1).
 
 ---
 
@@ -95,5 +104,5 @@ https://github.com/dwcares/culligan-ios/issues
 
 ## Screenshot Tips
 - Use iPhone 15 Pro Max (6.7") for required screenshots
-- Also capture iPhone SE (4") if supporting older devices
+- Re-shoot after the Aqualytics rebrand — older screenshots show the old name
 - Dark mode screenshots make a great second set

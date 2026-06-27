@@ -1,10 +1,10 @@
-# Privacy Policy — Culligan Water Analytics
+# Privacy Policy — Aqualytics
 
-**Last updated: June 3, 2026**
+**Last updated: June 27, 2026**
 
 ## Overview
 
-Culligan Water Analytics ("the App") is designed with privacy as a core principle. Your water usage data stays on your device.
+Aqualytics ("the App") is designed with privacy as a core principle. Your water usage data stays on your device.
 
 ## Data Collection
 
@@ -14,14 +14,14 @@ Culligan Water Analytics ("the App") is designed with privacy as a core principl
 
 The App stores the following data locally on your iPhone:
 
-- **Culligan account credentials** — stored securely in the iOS Keychain, used to authenticate with the Culligan IoT API
-- **Water usage history** — daily usage records fetched from your Culligan softener
+- **Account credentials** — stored securely in the iOS Keychain, used to authenticate with your water softener's IoT API
+- **Water usage history** — daily usage records fetched from your softener
 - **Pump events** — dates you record when your holding tank is pumped
 - **App settings** — your preferences for tank tracking, notifications, and display options
 
 ## Third-Party Services
 
-The App communicates directly with the **Culligan IoT API** (`uniapi.culliganiot.com`) to fetch your device data. This is the same API used by the official Culligan Connect app. We do not control or have access to Culligan's servers or data practices. Please refer to [Culligan's Privacy Policy](https://www.culligan.com/privacy-policy) for their data practices.
+The App communicates directly with the Culligan IoT API (`uniapi.culliganiot.com`) to fetch your device data, using the same credentials you use with the Culligan Connect service. We do not control or have access to those servers or their data practices. Please refer to [Culligan's Privacy Policy](https://www.culligan.com/privacy-policy) for their data practices.
 
 ## Data Sharing
 
@@ -42,8 +42,8 @@ We may update this privacy policy from time to time. Changes will be posted to t
 ## Contact
 
 If you have questions about this privacy policy, please open an issue at:
-https://github.com/dwcares/culligan-ios/issues
+https://github.com/dwcares/aqualytics-ios/issues
 
 ---
 
-*Culligan Water Analytics is not affiliated with, endorsed by, or sponsored by Culligan International.*
+*Aqualytics is an independent app and is not affiliated with, endorsed by, or sponsored by Culligan International.*

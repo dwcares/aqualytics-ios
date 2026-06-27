@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Aqualytics</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      max-width: 680px; margin: 0 auto; padding: 48px 24px; line-height: 1.6;
+      color: #1c1c1e; background: #fff;
+    }
+    @media (prefers-color-scheme: dark) { body { color: #f2f2f7; background: #000; } a { color: #5ac8fa; } }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.15rem; margin-top: 2rem; }
+    .updated { color: #8e8e93; }
+    .disclaimer { margin-top: 3rem; font-size: 0.85rem; color: #8e8e93; border-top: 1px solid #8884; padding-top: 1rem; }
+    a { color: #007aff; }
+    .back { display: inline-block; margin-bottom: 1.5rem; }
+  </style>
+</head>
+<body>
+  <a class="back" href="../">← Aqualytics</a>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: June 27, 2026</p>
+
+  <h2>Overview</h2>
+  <p>Aqualytics ("the App") is designed with privacy as a core principle. Your water usage data stays on your device.</p>
+
+  <h2>Data Collection</h2>
+  <p><strong>We do not collect, store, or transmit any personal data to our servers.</strong> The App has no backend server, no analytics, and no tracking.</p>
+
+  <h2>Data Stored on Your Device</h2>
+  <ul>
+    <li><strong>Account credentials</strong> — stored securely in the iOS Keychain, used to authenticate with your water softener's IoT API.</li>
+    <li><strong>Water usage history</strong> — daily usage records fetched from your softener.</li>
+    <li><strong>Pump events</strong> — dates you record when your holding tank is pumped.</li>
+    <li><strong>App settings</strong> — your preferences for tank tracking, notifications, and display options.</li>
+  </ul>
+
+  <h2>Third-Party Services</h2>
+  <p>The App communicates directly with the Culligan IoT API (<code>uniapi.culliganiot.com</code>) to fetch your device data, using the same credentials you use with the Culligan Connect service. We do not control or have access to those servers or their data practices. Please refer to <a href="https://www.culligan.com/privacy-policy">Culligan's Privacy Policy</a> for their data practices.</p>
+
+  <h2>Data Sharing</h2>
+  <p>We do not share your data with anyone. The export feature (CSV/PDF) generates files locally on your device — you control who you share them with.</p>
+
+  <h2>Data Deletion</h2>
+  <p>Uninstalling the App removes all locally stored data, including your usage history and settings. Your Keychain credentials are also removed.</p>
+
+  <h2>Children's Privacy</h2>
+  <p>The App is not directed at children under 13 and does not knowingly collect information from children.</p>
+
+  <h2>Changes to This Policy</h2>
+  <p>We may update this privacy policy from time to time. Changes will be posted to this page.</p>
+
+  <h2>Contact</h2>
+  <p>If you have questions about this privacy policy, please open an issue at <a href="https://github.com/dwcares/aqualytics-ios/issues">github.com/dwcares/aqualytics-ios/issues</a>.</p>
+
+  <p class="disclaimer">Aqualytics is an independent app and is not affiliated with, endorsed by, or sponsored by Culligan International.</p>
+</body>
+</html>
