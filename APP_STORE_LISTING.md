@@ -83,6 +83,36 @@ https://dwcares.github.io/aqualytics-ios/support/
 
 ---
 
+## App Privacy ("Nutrition Label")
+
+In App Store Connect → App Privacy, the recommended answer is:
+
+### Do you or your third-party partners collect data from this app?
+**No — "Data Not Collected."**
+
+Rationale (Apple defines "collect" as transmitting data off the device in a
+way accessible to you or your partners):
+- The app has **no backend server** — the developer never receives any data.
+- Login credentials are stored only in the device **Keychain**.
+- Usage history is fetched from the user's **own** account and stored only
+  **on-device** (SwiftData).
+- **No** analytics, **no** tracking, **no** third-party SDKs.
+
+### Tracking
+**No.** The app does not track users, so no App Tracking Transparency prompt
+is required.
+
+### If a reviewer pushes back (because the app sends login to a third party)
+The app transmits the user's email/password to the Culligan IoT API solely so
+the user can sign in to **their own** Culligan Connect account — this is the
+user accessing a third-party service, not developer data collection. If asked
+to declare it anyway, use:
+- **Contact Info → Email Address**: purpose *App Functionality*; **Not** linked
+  to the user's identity (by you); **Not** used for tracking.
+- Do **not** add Analytics, Advertising, or Tracking purposes.
+
+---
+
 ## App Review Notes (IMPORTANT)
 The app is login-gated and requires a Culligan Connect account to access any
 functionality. Provide a working demo account in App Review Information:
