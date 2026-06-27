@@ -21,7 +21,7 @@ struct LoginView: View {
                         .font(.system(size: 56))
                         .foregroundStyle(.cyan.gradient)
 
-                    Text("Culligan")
+                    Text("Aqualytics")
                         .font(.largeTitle.bold())
 
                     Text("Water Usage Analytics")

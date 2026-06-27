@@ -84,7 +84,7 @@ struct SettingsView: View {
                             .foregroundStyle(.secondary)
                     }
 
-                    Link(destination: URL(string: "https://github.com/dwcares/culligan-ios")!) {
+                    Link(destination: URL(string: "https://github.com/dwcares/aqualytics-ios")!) {
                         HStack {
                             Text("Source Code")
                             Spacer()
@@ -96,7 +96,7 @@ struct SettingsView: View {
                 } header: {
                     Text("About")
                 } footer: {
-                    Text("Culligan Water Usage Analytics is not affiliated with Culligan International. Data is stored locally on your device.")
+                    Text("Aqualytics is an independent app and is not affiliated with or endorsed by Culligan International. Data is stored locally on your device.")
                 }
             }
             .navigationTitle("Settings")

@@ -84,7 +84,7 @@ struct UsageWidgetSmallView: View {
                 Image(systemName: "drop.fill")
                     .foregroundStyle(.cyan)
                     .font(.caption)
-                Text("Culligan")
+                Text("Aqualytics")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }
@@ -177,7 +177,7 @@ struct UsageWidgetMediumView: View {
                     Image(systemName: "drop.fill")
                         .foregroundStyle(.cyan)
                         .font(.caption2)
-                    Text("Culligan")
+                    Text("Aqualytics")
                         .font(.system(size: 10))
                         .foregroundStyle(.secondary)
                 }
@@ -275,7 +275,7 @@ struct UsageWidget: Widget {
                 .containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName("Water Usage")
-        .description("Today's water usage from your Culligan softener.")
+        .description("Today's water usage from your water softener.")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }

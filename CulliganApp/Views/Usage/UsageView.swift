@@ -131,7 +131,7 @@ struct UsageView: View {
             }
             .sheet(isPresented: $showExport) {
                 if let serial = serialNumber {
-                    ExportView(serialNumber: serial, deviceName: "Culligan")
+                    ExportView(serialNumber: serial, deviceName: "Water Softener")
                 }
             }
             .refreshable {

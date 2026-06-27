@@ -590,7 +590,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CulliganApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Culligan;
+				INFOPLIST_KEY_CFBundleDisplayName = Aqualytics;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -670,7 +670,7 @@
 				CODE_SIGN_ENTITLEMENTS = CulliganWidgetExtension/CulliganWidgetExtension.entitlements;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CulliganWidgetExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Culligan Widgets";
+				INFOPLIST_KEY_CFBundleDisplayName = "Aqualytics Widgets";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -723,7 +723,7 @@
 				CODE_SIGN_ENTITLEMENTS = CulliganWidgetExtension/CulliganWidgetExtension.entitlements;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CulliganWidgetExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Culligan Widgets";
+				INFOPLIST_KEY_CFBundleDisplayName = "Aqualytics Widgets";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -762,7 +762,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CulliganApp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Culligan;
+				INFOPLIST_KEY_CFBundleDisplayName = Aqualytics;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
