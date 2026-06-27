@@ -8,10 +8,19 @@ final class AuthViewModel {
     var isLoading = false
     var errorMessage: String?
 
+    /// True until the initial auth restoration finishes, so the UI can show a
+    /// splash instead of briefly flashing the login screen on launch.
+    var isInitializing = true
+
+    /// Whether stored credentials exist. Lets the launch UI show the dashboard
+    /// skeleton for a likely-signed-in user, vs. login when there's nothing to restore.
+    let hasStoredCredentials = KeychainService.loadCredentials() != nil
+
     let client = CulliganClient()
 
     /// Check if we have existing valid auth from keychain
     func checkExistingAuth() async {
+        defer { isInitializing = false }
         if await client.isAuthenticated {
             isAuthenticated = true
         } else if KeychainService.loadCredentials() != nil {

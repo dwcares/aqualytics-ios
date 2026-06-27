@@ -41,6 +41,13 @@ struct RootView: View {
                 OnboardingView {
                     hasCompletedOnboarding = true
                 }
+            } else if authViewModel.isInitializing {
+                if authViewModel.hasStoredCredentials {
+                    LaunchView()
+                } else {
+                    LoginView()
+                        .environment(authViewModel)
+                }
             } else if authViewModel.isAuthenticated {
                 ContentView()
                     .environment(authViewModel)
@@ -87,6 +94,24 @@ struct RootView: View {
             settings.notificationsEnabled = enabled
             try? modelContext.save()
         }
+    }
+}
+
+// MARK: - Launch Splash
+
+/// Shown while auth state is being restored for a returning user. Renders the
+/// dashboard skeleton so launch flows straight into the real dashboard with no
+/// login flash and no jarring spinner.
+struct LaunchView: View {
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                DashboardSkeletonContent()
+                    .padding()
+            }
+            .navigationTitle("Dashboard")
+        }
+        .allowsHitTesting(false)
     }
 }
 

@@ -74,12 +74,17 @@ struct DashboardView: View {
         return dateStr
     }
 
+    private var isInitialLoading: Bool {
+        viewModel.isLoading && viewModel.device == nil
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 16) {
-                    if viewModel.isLoading && viewModel.device == nil {
-                        ProgressView("Loading devices...")
+                    if isInitialLoading {
+                        DashboardSkeletonContent()
+                            .transition(.opacity)
                     } else if let device = viewModel.device {
 
                         // 1. HERO — today's usage, big and prominent
@@ -247,6 +252,7 @@ struct DashboardView: View {
                     }
                 }
                 .padding()
+                .animation(.easeInOut(duration: 0.3), value: isInitialLoading)
             }
             .navigationTitle("Dashboard")
             .refreshable {
@@ -259,6 +265,84 @@ struct DashboardView: View {
                 }
             }
         }
+    }
+}
+
+// MARK: - Loading Skeleton
+
+/// Shimmering placeholder mirroring the dashboard layout, shown while the first
+/// load is in flight. Mirrors `DashboardView`'s structure so the swap to real
+/// content lands in roughly the same positions.
+struct DashboardSkeletonContent: View {
+    var body: some View {
+        VStack(spacing: 16) {
+            // Hero — today's usage
+            SkeletonBlock(cornerRadius: 12)
+                .frame(width: 200, height: 52)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 4)
+
+            // Calendar heatmap
+            SkeletonBlock(cornerRadius: 16)
+                .frame(height: 150)
+
+            // Secondary info row
+            HStack {
+                SkeletonBlock(cornerRadius: 6).frame(width: 130, height: 16)
+                Spacer()
+                SkeletonBlock(cornerRadius: 6).frame(width: 70, height: 16)
+            }
+            .padding(.horizontal, 4)
+
+            // This week — section header + three cards
+            VStack(spacing: 12) {
+                SkeletonBlock(cornerRadius: 4)
+                    .frame(width: 90, height: 12)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                HStack(spacing: 12) {
+                    ForEach(0..<3, id: \.self) { _ in
+                        SkeletonBlock(cornerRadius: 12).frame(height: 76)
+                    }
+                }
+            }
+
+            // Device details card
+            SkeletonBlock(cornerRadius: 16)
+                .frame(height: 200)
+        }
+        .accessibilityElement()
+        .accessibilityLabel("Loading dashboard")
+    }
+}
+
+/// A single rounded placeholder block with a subtle shimmer sweep.
+struct SkeletonBlock: View {
+    var cornerRadius: CGFloat = 12
+    @State private var animate = false
+
+    var body: some View {
+        let shape = RoundedRectangle(cornerRadius: cornerRadius)
+        shape
+            .fill(Color.secondary.opacity(0.18))
+            .overlay {
+                GeometryReader { proxy in
+                    let width = proxy.size.width
+                    LinearGradient(
+                        colors: [.clear, Color.white.opacity(0.25), .clear],
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                    .frame(width: width * 0.7)
+                    .offset(x: animate ? width : -width)
+                }
+            }
+            .clipShape(shape)
+            .onAppear {
+                withAnimation(.linear(duration: 1.3).repeatForever(autoreverses: false)) {
+                    animate = true
+                }
+            }
     }
 }
 
