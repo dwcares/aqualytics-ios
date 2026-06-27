@@ -4,7 +4,10 @@ import SwiftUI
 struct OnboardingView: View {
     let onComplete: () -> Void
 
+    private let pageCount = 3
     @State private var currentPage = 0
+
+    private var isLastPage: Bool { currentPage == pageCount - 1 }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -33,19 +36,24 @@ struct OnboardingView: View {
                 )
                 .tag(2)
             }
-            .tabViewStyle(.page(indexDisplayMode: .always))
+            .tabViewStyle(.page(indexDisplayMode: .never))
+
+            // Custom page indicator — always visible so users can see how many
+            // pages there are (the built-in dots only show while scrubbing).
+            PageIndicator(count: pageCount, current: currentPage)
+                .padding(.bottom, 16)
 
             // Bottom button
             Button {
-                if currentPage < 2 {
+                if isLastPage {
+                    onComplete()
+                } else {
                     withAnimation {
                         currentPage += 1
                     }
-                } else {
-                    onComplete()
                 }
             } label: {
-                Text(currentPage < 2 ? "Next" : "Get Started")
+                Text(isLastPage ? "Get Started" : "Next")
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
@@ -55,17 +63,37 @@ struct OnboardingView: View {
             .padding(.horizontal, 24)
             .padding(.bottom, 16)
 
-            if currentPage < 2 {
-                Button("Skip") {
-                    onComplete()
-                }
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .padding(.bottom, 24)
-            } else {
-                Color.clear.frame(height: 44)
+            // Always kept in the layout so the button above doesn't shift
+            // position on the final page; just hidden when there's nothing to skip.
+            Button("Skip") {
+                onComplete()
+            }
+            .font(.subheadline)
+            .foregroundStyle(.secondary)
+            .padding(.bottom, 24)
+            .opacity(isLastPage ? 0 : 1)
+            .disabled(isLastPage)
+            .accessibilityHidden(isLastPage)
+        }
+    }
+}
+
+/// Always-visible row of dots showing the current page and total count.
+private struct PageIndicator: View {
+    let count: Int
+    let current: Int
+
+    var body: some View {
+        HStack(spacing: 8) {
+            ForEach(0..<count, id: \.self) { index in
+                Circle()
+                    .fill(index == current ? Color.cyan : Color.secondary.opacity(0.3))
+                    .frame(width: 8, height: 8)
             }
         }
+        .animation(.easeInOut(duration: 0.2), value: current)
+        .accessibilityElement()
+        .accessibilityLabel("Page \(current + 1) of \(count)")
     }
 }
 
