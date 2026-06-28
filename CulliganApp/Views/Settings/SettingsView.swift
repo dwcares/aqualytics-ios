@@ -98,6 +98,21 @@ struct SettingsView: View {
                 } footer: {
                     Text("Aqualytics is an independent app and is not affiliated with or endorsed by Culligan International. Data is stored locally on your device.")
                 }
+
+                #if DEBUG
+                Section {
+                    Button("Load Demo Data") {
+                        SampleData.load(modelContext: modelContext)
+                    }
+                    Button("Clear Demo Data", role: .destructive) {
+                        SampleData.clear(modelContext: modelContext)
+                    }
+                } header: {
+                    Text("Developer")
+                } footer: {
+                    Text("Seeds sample usage for screenshots. Force-quit and relaunch the app after loading. DEBUG builds only.")
+                }
+                #endif
             }
             .navigationTitle("Settings")
             .scrollDismissesKeyboard(.immediately)

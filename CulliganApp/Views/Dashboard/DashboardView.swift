@@ -258,7 +258,20 @@ struct DashboardView: View {
             .refreshable {
                 await viewModel.refresh(client: authViewModel.client, modelContext: modelContext)
             }
+            .onAppear {
+                #if DEBUG
+                if SampleData.isDemoMode {
+                    viewModel.device = SampleData.demoDevice()
+                    if let serial = viewModel.device?.serialNumber {
+                        tankViewModel.loadPumpEvents(serialNumber: serial, modelContext: modelContext)
+                    }
+                }
+                #endif
+            }
             .task {
+                #if DEBUG
+                if SampleData.isDemoMode { return }
+                #endif
                 await viewModel.refresh(client: authViewModel.client, modelContext: modelContext)
                 if let serial = viewModel.device?.serialNumber, tankEnabled {
                     tankViewModel.loadPumpEvents(serialNumber: serial, modelContext: modelContext)
