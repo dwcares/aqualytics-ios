@@ -12,6 +12,10 @@
 
 [Privacy Policy](https://dwcares.github.io/aqualytics-ios/privacy/) · [Support](https://dwcares.github.io/aqualytics-ios/support/)
 
+<br>
+
+<img src="screenshots/01.png" width="260" alt="Aqualytics on iPhone">
+
 </div>
 
 ---
